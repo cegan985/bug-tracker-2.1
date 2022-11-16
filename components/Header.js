@@ -1,14 +1,12 @@
 import Image from 'next/image'
 import React from 'react'
-import MyImageSvg from 'file:///Users/connoregan/Downloads/logoipsum-250.svg'
-import { MagnifyingGlassIcon, PlusCircleIcon, BellIcon, Bars3Icon, BugAntIcon } from '@heroicons/react/24/outline'
+import { MagnifyingGlassIcon, PlusCircleIcon, BellIcon, Bars3Icon } from '@heroicons/react/24/outline'
 import { signIn, signOut, useSession, } from 'next-auth/react'
 import { useRecoilState } from 'recoil'
 import { modalState } from '../atoms/modalAtom'
 import { useRouter } from 'next/router'
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-
 
 function Header() {
     const {data: session} = useSession()
@@ -26,7 +24,7 @@ function Header() {
             {/* Left */}
             <div className='relative w-32 cursor-pointer'>
                 <Image 
-                src={MyImageSvg} 
+                src='https://img.logoipsum.com/250.svg' 
                 layout='fill' 
                 objectFit='contain'
                 />

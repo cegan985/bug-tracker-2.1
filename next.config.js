@@ -6,7 +6,7 @@ const nextConfig = {
 
 module.exports = {
   images: {
-    domains: ['https://logoipsum.com/']
+    domains: ['img.logoipsum.com'],
   }
 }
   
