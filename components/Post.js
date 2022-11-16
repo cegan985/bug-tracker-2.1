@@ -1,4 +1,4 @@
-import { Menu, Popover, Transition } from '@headlessui/react'
+import { Menu, Transition } from '@headlessui/react'
 import { useSession } from 'next-auth/react'
 import React, { Fragment, useEffect, useState } from 'react'
 import PostHeader from './PostHeader'
@@ -7,8 +7,8 @@ import { useRecoilState } from 'recoil'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import moment from 'moment'
 import Posts from './Posts'
-import { TrashIcon } from '@heroicons/react/24/outline'
-import { doc, deleteDoc } from "firebase/firestore";
+import { LockClosedIcon, LockOpenIcon, TrashIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { doc, deleteDoc, firestore, collection, updateDoc } from "firebase/firestore";
 import { async } from '@firebase/util'
 import { db } from '../firebase'
 
@@ -19,8 +19,25 @@ function classNames(...classes) {
 
 function Post({ bug, reporter, date, status, assignee, severity, id }) {
   const {data: session} = useSession()
-  const [open, setOpen] = useRecoilState(menuState)
+  const [state, setState] = useState(false)
+
+  const statusColor = () => {
+    setState(!state)
+  }
   
+  const closeStatus = async () => {
+    await updateDoc(doc(db, 'posts', id), {
+      status: 'Closed'
+    })  
+  }
+
+  const openStatus = async () => {
+    await updateDoc(doc(db, 'posts', id), {
+      status: 'Open'
+    })  
+  }
+
+
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "posts", id));
     
@@ -61,11 +78,11 @@ function Post({ bug, reporter, date, status, assignee, severity, id }) {
               </td>
               <td class="px-5 py-5 border-b border-gray-200 group/edit group-hover/item:dark:bg-slate-700 dark:border-slate-700 bg-white dark:bg-slate-800 sm:w-32 md:w-32 text-sm">
                 <span
-                  class="relative inline-block px-3 py-1 font-semibold text-green-900 dark:text-green-300 leading-tight"
+                  class={"relative inline-block px-3 py-1 font-semibold text-green-900 dark:text-green-300 leading-tight" + (status === 'Closed' ? 'relative inline-block px-3 py-1 font-semibold text-red-900 dark:text-red-900 leading-tight' : '')}
                 >
                   <span
                     aria-hidden
-                    class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+                    class={"absolute inset-0 bg-green-200 opacity-50 rounded-full" + (status === 'Closed' ? 'absolute inset-0 bg-red-200 opacity-50 rounded-full' : '')}
                   ></span>
                   <span class="relative">{status}</span>
                 </span>
@@ -130,26 +147,18 @@ function Post({ bug, reporter, date, status, assignee, severity, id }) {
                           )}
                         </Menu.Item>
                         <Menu.Item>
-                          {({ active }) => (
-                            <button
-                              className={`${
-                                active ? 'bg-violet-500 text-white' : 'text-gray-900 dark:text-white'
-                              } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                            >
-                              {active ? (
-                                <DuplicateActiveIcon
-                                  className="mr-2 h-5 w-5"
-                                  aria-hidden="true"
-                                />
-                              ) : (
-                                <DuplicateInactiveIcon
-                                  className="mr-2 h-5 w-5 space-x-2"
-                                  aria-hidden="true"
-                                />
-                              )}
+                            <button onClick={closeStatus} className='flex w-full items-center rounded-md group px-2 py-2 text-sm hover:bg-violet-500 hover:text-white text-gray-900 dark:text-white' >
+                              <LockClosedIcon className='h-5 w-5 mr-2 text-violet-500 group-hover:text-white ' />
+                              
                               Close
                             </button>
-                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                            <button onClick={openStatus}  className='flex w-full items-center rounded-md group px-2 py-2 text-sm hover:bg-violet-500 hover:text-white text-gray-900 dark:text-white' >
+                              <LockOpenIcon className='h-5 w-5 mr-2 text-violet-500 group-hover:text-white' />
+                              
+                              Open
+                            </button>
                         </Menu.Item>
                       </div>
                       <div className="px-1 py-1">
@@ -274,23 +283,7 @@ function EditActiveIcon(props) {
   )
 }
 
-function DuplicateInactiveIcon(props) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
-</svg>
 
-  )
-}
-
-function DuplicateActiveIcon(props) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
-</svg>
-
-  )
-}
 
 function ArchiveInactiveIcon(props) {
   return (
