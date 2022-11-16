@@ -7,6 +7,7 @@ import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { useSession } from 'next-auth/react'
 
 
+
 function Modal() {
     const { data: session } = useSession()
     const [ open, setOpen ] = useRecoilState(modalState)
@@ -20,6 +21,7 @@ function Modal() {
 
     const handleBugChange = (event) => {
         setBug(event.target.value);
+        console.log('Hello')
       };
     
     const handleAssigneeChange = (event) => {
