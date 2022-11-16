@@ -1,6 +1,6 @@
 import React from 'react'
 import { HomeIcon, BugAntIcon, AdjustmentsHorizontalIcon, ArrowLeftOnRectangleIcon} from '@heroicons/react/24/outline'
-import { signIn, signOut, useSession, } from 'next-auth/react'
+import { signOut, useSession, } from 'next-auth/react'
 
 function SideNav() {
     const {data: session} = useSession()

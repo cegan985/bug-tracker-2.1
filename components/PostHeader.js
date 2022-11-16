@@ -47,7 +47,7 @@ function PostHeader() {
                     Severity
                   </th>
                   <th
-                    class="px-5 w-48 ml-20 text-right py-3 border-b-2 cursor-pointer border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-900 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider"
+                    class="px-5 w-48 ml-20 text-right py-3 border-b-2 cursor-pointer border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-900 text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider"
                     onClick={() => setOpen(true)}
                   >  
                     <PlusCircleIcon onClick={() => setOpen(true)} className='navBtn text-gray-900 dark:text-gray-300 hover:text-[rgb(72,69,210)]'/>

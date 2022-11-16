@@ -1,29 +1,15 @@
 import { Menu, Transition } from '@headlessui/react'
 import { useSession } from 'next-auth/react'
-import React, { Fragment, useEffect, useState } from 'react'
-import PostHeader from './PostHeader'
-import {menuState} from '../atoms/bugDropAtom'
-import { useRecoilState } from 'recoil'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import React, { Fragment, useState } from 'react'
 import moment from 'moment'
-import Posts from './Posts'
-import { LockClosedIcon, LockOpenIcon, TrashIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { doc, deleteDoc, firestore, collection, updateDoc } from "firebase/firestore";
-import { async } from '@firebase/util'
+import { LockClosedIcon, LockOpenIcon } from '@heroicons/react/24/outline'
+import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from '../firebase'
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 
 function Post({ bug, reporter, date, status, assignee, severity, id }) {
   const {data: session} = useSession()
   const [state, setState] = useState(false)
-
-  const statusColor = () => {
-    setState(!state)
-  }
   
   const closeStatus = async () => {
     await updateDoc(doc(db, 'posts', id), {
