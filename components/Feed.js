@@ -12,7 +12,7 @@ function Feed() {
       <SideNav />
       </section>
       {session && (
-      <section className='flex-shrink sm:col-span-4 md:col-span-4 lg:col-span-4 bg-gray-100 dark:bg-slate-900 overflow-scroll'> 
+      <section className='flex-shrink col-span-1 sm:col-span-4 md:col-span-4 lg:col-span-4 bg-gray-100 dark:bg-slate-900 overflow-scroll'> 
       <PostHeader />
       <div className='lg:mt-12'>
       <Posts />

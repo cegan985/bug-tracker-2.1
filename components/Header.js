@@ -41,7 +41,7 @@ function Header() {
             </div>
 
             {/* Right */}
-            <div className='flex items-center justify-end space-x-6'>
+            <div className='flex items-center justify-end space-x-2 md:space-x-6 lg:space-x-6'>
                 <PlusCircleIcon onClick={() => setOpen(true)} className='navBtn text-gray-900 dark:text-white hover:text-[rgb(72,69,210)]'/>
                 
                 <BellIcon className='navBtn dark:text-white'/>
@@ -49,7 +49,7 @@ function Header() {
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className="">
-                <img className='h-10 w-10 rounded-full cursor-pointer border p-[1.5px]' src={session.user.image} alt='profile pic' />
+                <img className='h-10 w-10 rounded-full cursor-pointer border p-[1.5px]' src={session.user.image} alt='profile pic'/>
         </Menu.Button>
       </div>
 
