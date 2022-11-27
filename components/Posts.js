@@ -49,6 +49,8 @@ function Posts() {
             bug={post.data().bug}
             reporter={post.data().username}
             date={post.data().timestamp}
+            startdate={post.data().startdate}
+            endDate={post.data().endDate}
             status={post.data().status}
             assignee={post.data().assignee}
             severity={post.data().severity}

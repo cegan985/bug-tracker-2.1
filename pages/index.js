@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Feed from '../components/Feed'
 import Header from '../components/Header'
 import Modal from '../components/Modal'
+import Scroll from '../components/Scroll'
 
 
 export default function Home() {
@@ -21,6 +22,8 @@ export default function Home() {
 
       {/* Modal */}
       <Modal /> 
+
+      <Scroll />
 
 
       
