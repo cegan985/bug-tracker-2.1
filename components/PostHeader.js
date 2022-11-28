@@ -47,7 +47,7 @@ function PostHeader() {
                     Severity
                   </th>
                   <th
-                    class="px-5 py-3 border-b-2 w-20 border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-900 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider"
+                    class="px-5 py-3 border-b-2 w-12 border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-900 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider"
                   >
                     
                   </th>

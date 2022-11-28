@@ -11,6 +11,7 @@ import { db } from '../firebase'
 function Post({ bug, startdate, endDate, reporter, date, status, assignee, severity, id }) {
   const {data: session} = useSession()
   const [state, setState] = useState(false)
+  
 
   console.log(endDate)
   
@@ -266,18 +267,18 @@ function Post({ bug, startdate, endDate, reporter, date, status, assignee, sever
                 </div>
                 <div>
                   <p>{date && moment(date.toDate()).format("MMM Do YY")}</p>
-                  <p class="text-gray-600 dark:text-slate-200 whitespace-no-wrap text-xs">Due in 3 days</p>
+                  <p class="text-gray-600 dark:text-slate-200 whitespace-no-wrap text-xs">Due: {endDate}</p>
                 </div>
                 <div className='w-20'>
                 <p class="text-gray-900 dark:text-white whitespace-no-wrap">{severity}</p>
                 </div>
                 <div className='flex w-16'>
                 <span
-                  class={"relative inline-block px-3 py-1 font-semibold text-green-900 dark:text-green-300 leading-tight" + (status === 'Closed' ? 'relative inline-block px-3 py-1 font-semibold text-red-900 dark:text-red-900 leading-tight' : '')}
+                  class={"relative inline-block px-3 py-1 font-semibold text-green-900 dark:text-green-300 leading-tight" + (status === 'Closed' ? 'relative inline-block px-3 py-1 font-semibold text-red-900 dark:text-red-900 leading-tight' : status === 'In Progress' ? 'relative inline-block px-3 py-1 font-semibold text-orange-900 dark:text-orange-900 leading-tight' : '')}
                 >
                   <span
                     aria-hidden
-                    class={"absolute inset-0 bg-green-200 opacity-50 rounded-full" + (status === 'Closed' ? 'absolute inset-0 bg-red-200 opacity-50 rounded-full' : '')}
+                    class={"absolute inset-0 bg-green-200 opacity-50 rounded-full" + (status === 'Closed' ? 'absolute inset-0 bg-red-200 opacity-50 rounded-full' : status === 'In Progress' ? 'absolute inset-0 bg-orange-200 dark:bg-orange-200 opacity-50 rounded-full' : '')}
                   ></span>
                   <span class="relative">{status}</span>
                 </span>
