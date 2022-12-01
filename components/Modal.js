@@ -21,6 +21,7 @@ function Modal() {
     const dueDateRef = useRef(null)
     const severityRef = useRef(null)
     const assigneeRef = useRef(null)
+    const statusRef = useRef(null)
     const [ startDate, setStartDate ] = useState(new Date)
     const [ endDate, setEndDate ] = useState(new Date)
 
@@ -56,6 +57,7 @@ function Modal() {
             profileImg: session.user.image,
             bug: bugRef.current.value,
             severity: severityRef.current.value,
+            status: statusRef.current.value,
             startDate: startDate.toDateString(),
             endDate: endDate.toDateString(),
             assignee: assigneeRef.current.value,
@@ -115,6 +117,13 @@ function Modal() {
                         <div className='pt-4'>
                         <h1 className='pb-2 text-sm'>Assign To</h1>
                         <input onChange={handleAssigneeChange} ref={assigneeRef} type='text' className='bugForm' placeholder='Assign To'/>
+                        </div>
+                        <div className='pt-4'>
+                        <h1 className='pb-2 text-sm'>Status</h1>
+                        <select ref={statusRef} className='bugForm'>
+                            <option>Open</option>
+                            <option>Closed</option>
+                        </select>
                         </div>
                         <div className='pt-4'>
                         <h1 className='pb-2 text-sm'>Due Date</h1>

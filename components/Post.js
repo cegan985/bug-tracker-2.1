@@ -12,6 +12,7 @@ function Post({ bug, startdate, endDate, reporter, date, status, assignee, sever
   const {data: session} = useSession()
   const [state, setState] = useState(false)
   
+  
 
   console.log(endDate)
   
@@ -41,10 +42,10 @@ function Post({ bug, startdate, endDate, reporter, date, status, assignee, sever
 
 
   return (
-    <div className='container mx-auto sm:px-8 w-full overflow-visible z-10'>
+    <div className='container mx-auto sm:px-8 w-full overflow-visible z-10 mr-9'>
       <div class="-mx-4 sm:-mx-8 px-4 group/item sm:px-8 hidden md:block overflow-visible z-10 ">
       <div
-        class="inline-block min-w-full shadow-md overflow-visible z-10"
+        class="inline-block min-w-full hover:shadow-xl overflow-visible z-10"
       >
       <table className='w-full leading-normal overflow-visible z-10'>
     <tbody className='overflow-visible z-10'>
@@ -68,11 +69,11 @@ function Post({ bug, startdate, endDate, reporter, date, status, assignee, sever
                   </div>
                 </div>
               </td>
-              <td class="px-5 py-5 border-b border-gray-200 group/edit group-hover/item:dark:bg-slate-700 dark:border-slate-700 bg-white dark:bg-slate-800 w-36 text-sm">
+              <td class="px-5 py-5 border-b border-gray-200 group/edit group-hover/item:dark:bg-slate-700 dark:border-slate-700 bg-white dark:bg-slate-800 w-44 text-sm">
                 <p class="text-gray-900 dark:text-white whitespace-no-wrap">{date && moment(date.toDate()).format("MMM Do YY")}</p>
                 <p class="text-gray-600 dark:text-slate-200 whitespace-no-wrap">Due: {endDate}</p>
               </td>
-              <td class="px-5 py-5 border-b border-gray-200 group/edit group-hover/item:dark:bg-slate-700 dark:border-slate-700 bg-white dark:bg-slate-800 sm:w-40 md:w-40 text-sm">
+              <td class="px-5 py-5 border-b border-gray-200 group/edit group-hover/item:dark:bg-slate-700 dark:border-slate-700 bg-white dark:bg-slate-800 w-44 text-sm">
                 <span
                   class={"relative inline-block px-3 py-1 font-semibold text-green-900 dark:text-green-300 leading-tight" + (status === 'Closed' ? 'relative inline-block px-3 py-1 font-semibold text-red-900 dark:text-red-900 leading-tight' : status === 'In Progress' ? 'relative inline-block px-3 py-1 font-semibold text-orange-900 dark:text-orange-900 leading-tight' : '' )}
                 >
@@ -83,7 +84,7 @@ function Post({ bug, startdate, endDate, reporter, date, status, assignee, sever
                   <span class="relative">{status}</span>
                 </span>
               </td>
-              <td class="px-5 py-5 border-b border-gray-200 overflow-visible z-10 group/edit group-hover/item:dark:bg-slate-700 dark:border-slate-700 bg-white dark:bg-slate-800 sm:w-32 text-sm">
+              <td class="px-5 py-5 border-b border-gray-200 overflow-visible z-10 group/edit group-hover/item:dark:bg-slate-700 dark:border-slate-700 bg-white dark:bg-slate-800 w-44 text-sm">
                 <p class="text-gray-900 dark:text-white whitespace-no-wrap">{assignee}</p>
               </td>
               <td class="px-5 py-5 border-b border-gray-200 overflow-visible z-10 group/edit group-hover/item:dark:bg-slate-700 dark:border-slate-700 bg-white dark:bg-slate-800 sm:w-28 text-sm">

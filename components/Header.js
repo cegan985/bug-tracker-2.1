@@ -27,6 +27,7 @@ function Header() {
                 src='https://img.logoipsum.com/250.svg' 
                 layout='fill' 
                 objectFit='contain'
+                alt=''
                 />
                
             </div>

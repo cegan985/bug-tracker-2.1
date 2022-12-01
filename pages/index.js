@@ -3,6 +3,7 @@ import Feed from '../components/Feed'
 import Header from '../components/Header'
 import Modal from '../components/Modal'
 import Scroll from '../components/Scroll'
+import SideNav from '../components/SideNav'
 
 
 export default function Home() {
