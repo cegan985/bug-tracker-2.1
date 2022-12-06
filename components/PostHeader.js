@@ -1,7 +1,8 @@
-import { PlusCircleIcon } from '@heroicons/react/24/outline'
+import { MagnifyingGlassIcon, PlusCircleIcon } from '@heroicons/react/24/outline'
 import React from 'react'
 import { modalState } from '../atoms/modalAtom'
 import { useRecoilState } from 'recoil'
+import Filter from './Filter'
 
 function PostHeader() {
   const [open, setOpen] = useRecoilState(modalState)
@@ -22,7 +23,7 @@ function PostHeader() {
                     Bug
                   </th>
                   <th
-                    class="px-5 py-3 border-b-2 w-44 border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-900 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider"
+                    class="px-5 py-3 border-b-2 w-52 border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-900 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider"
                   >
                     Reporter
                   </th>
@@ -42,7 +43,7 @@ function PostHeader() {
                     Assignee
                   </th>
                   <th
-                    class="px-5 py-3 border-b-2 w-48 border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-900 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider"
+                    class="px-5 py-3 border-b-2 w-40 border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-900 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider"
                   >
                     Severity
                   </th>

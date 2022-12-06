@@ -1,28 +1,16 @@
+import { AdjustmentsHorizontalIcon, MagnifyingGlassIcon, PlusCircleIcon } from '@heroicons/react/24/outline'
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore'
 import {db} from '../firebase'
 import React, { useEffect, useState } from 'react'
+import Posts from './Posts'
 import Post from './Post'
-import { AdjustmentsHorizontalIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import Filter from './Filter'
 
-
-
-
-
-function Posts() {
-  const [ posts, setPosts ] = useState([])
-  const [search, setSearch] = useState('')
-
-  useEffect(() => {
-        onSnapshot(query(collection(db, 'posts'), orderBy('timestamp', 'desc')), snapshot => {
-          setPosts(snapshot.docs)
-        })
-  }, [])
-
-  return (   
-  <div>
-  <div class="container mx-auto px-4 sm:px-8 w-full mr-9">
-    <div class="fixed  z-30">
+function Filter() {
+    const [search, setSearch] = useState('')
+    
+  return (
+    <div class="container mx-auto px-4 sm:px-8 w-full mr-9">
+    <div class="fixed z-30">
       <div class="-mx-4 sm:-mx-8 sm:px-8 overflow-x-auto">
         <div
           class="hidden md:inline-block min-w-full overflow-hidden"
@@ -50,31 +38,7 @@ function Posts() {
       </div>
     </div>
   </div>
-    <div className='pt-16'>
-      
-      
-      
-        
-        {posts.filter((post) => {
-          return search.toLowerCase() === '' ? post : post.data().username.toLowerCase().includes(search) || post.data().severity.toLowerCase().includes(search)
-        }).map((post) => (
-            <Post
-            key={post.id}
-            id={post.id}
-            bug={post.data().bug}
-            reporter={post.data().username}
-            date={post.data().timestamp}
-            startdate={post.data().startdate}
-            endDate={post.data().endDate}
-            status={post.data().status}
-            assignee={post.data().assignee}
-            severity={post.data().severity}
-            />
-        ))}
-        
-    </div>
-  </div>
   )
 }
 
-export default Posts
+export default Filter

@@ -11,6 +11,8 @@
   "dependencies": {
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.12",
+    "@syncfusion/ej2-react-charts": "^20.3.58",
+    "chart.js": "^4.0.1",
     "date-fns": "^2.29.3",
     "firebase": "^9.12.1",
     "moment": "^2.29.4",
@@ -18,9 +20,11 @@
     "next-auth": "^4.16.4",
     "nodemailer": "^6.8.0",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.0.1",
     "react-date-countdown-timer": "^1.1.0",
     "react-date-range": "^1.4.0",
     "react-dom": "^18.2.0",
+    "react-sparklines": "^1.7.0",
     "recoil": "^0.7.6"
   },
   "devDependencies": {

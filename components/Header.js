@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React from 'react'
+import React, {useRef, useState} from 'react'
 import { MagnifyingGlassIcon, PlusCircleIcon, BellIcon, Bars3Icon } from '@heroicons/react/24/outline'
 import { signIn, signOut, useSession, } from 'next-auth/react'
 import { useRecoilState } from 'recoil'
@@ -7,19 +7,23 @@ import { modalState } from '../atoms/modalAtom'
 import { useRouter } from 'next/router'
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
+import Posts from './Posts'
+import {db} from '../firebase'
 
 function Header() {
     const {data: session} = useSession()
     const [open, setOpen] = useRecoilState(modalState)
     const router = useRouter()
+    const [query, setQuery] = useState('')
 
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
       }
     //console.log(session)
 
+    console.log(db.posts)
   return (
-    <div className='border-b dark:border-slate-700 bg-white dark dark:bg-slate-800 sticky top-0 z-50'>
+    <div className='border-b dark:border-slate-700 p-1 bg-white dark dark:bg-slate-800 sticky top-0 z-50'>
         <div className='flex justify-between max-w-7xl pt-1 pb-1 mx-5 xl:mx-auto'>
             {/* Left */}
             <div className='relative w-32 cursor-pointer'>
@@ -34,12 +38,6 @@ function Header() {
            { session ? (
             <>
             {/* Middle */}
-            <div className='relative p-3 rounded-md'>
-                <div className='absolute inset-y-0 pl-3 flex items-center pointer-events-none'>
-                    <MagnifyingGlassIcon className='h-5 w-5 text-gray-500'/>
-                </div>
-                <input className='bg-gray-50 dark:bg-slate-900 dark:text-gray-500 block w-full pl-10 sm:text-sm border-gray-300 dark:border-slate-700 rounded-md focus:ring-[rgb(72,69,210)] focus:border-[rgb(72,69,210)]' type='text' placeholder='Search by Names, Bugs or Other'/>
-            </div>
 
             {/* Right */}
             <div className='flex items-center justify-end space-x-2 md:space-x-6 lg:space-x-6'>

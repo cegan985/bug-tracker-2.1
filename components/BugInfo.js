@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { db } from '../firebase'
 import { collection, getfirestore, getCountFromServer, query, where } from 'firebase/firestore'
 import { BugAntIcon, CurrencyDollarIcon, LockOpenIcon } from '@heroicons/react/24/outline'
+import BarChart from './BarChart'
+
 
 
 function BugInfo() {
@@ -120,12 +122,27 @@ function BugInfo() {
                             <span><CurrencyDollarIcon className='h-5 w-5'/></span>
                             <span>Expense</span>
                         </p>
-
+                        <p className='flex items-center gap-2 text-green-400'>
+                            <span><CurrencyDollarIcon className='h-5 w-5'/></span>
+                            <span>Budget</span>
+                        </p>
                     </div>
-
                 </div>
+                <div className='mt-10 flex gap-10 flex-wrap justify-center'>
+                    <div className='border-r-2 border-gray-200 m-4 pr-10'>
+                        <div className='mt-8'>
+                            <p>
+                                <span className='text-3xl font-semibold'>{numBugs}</span>
+                                <span className='p-1.5 hover:drop-shadow-xl cursor-pointer rounded-full text-white bg-green-400 ml-3 text-xs'>+1</span>
+                            </p>
+                            <p className='text-gray-500 mt-1'>Total number of bugs</p>
+                        </div>
+                        <div className='mt-5'>
+                            
 
-           
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

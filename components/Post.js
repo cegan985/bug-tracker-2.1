@@ -2,7 +2,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { useSession } from 'next-auth/react'
 import React, { Fragment, useState } from 'react'
 import moment from 'moment'
-import { ArrowPathIcon, LockClosedIcon, LockOpenIcon } from '@heroicons/react/24/outline'
+import { ArrowPathIcon, LockClosedIcon, LockOpenIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from '../firebase'
 
@@ -13,8 +13,9 @@ function Post({ bug, startdate, endDate, reporter, date, status, assignee, sever
   const [state, setState] = useState(false)
   
   
-
-  console.log(endDate)
+  const checkingProps = (props) => {
+    console.log(props)
+  }
   
   const closeStatus = async () => {
     await updateDoc(doc(db, 'posts', id), {
@@ -53,7 +54,7 @@ function Post({ bug, startdate, endDate, reporter, date, status, assignee, sever
               <td class="w-64 px-5 py-5 border-b border-gray-200 group/edit group-hover/item:dark:bg-slate-700 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm">
                 <p class="text-gray-900 h-12 w-10 md:w-52 dark:text-white whitespace-no-wrap overflow-y-scroll">{bug}</p>
               </td>
-              <td class="px-5 py-5 border-b border-gray-200 group/edit group-hover/item:dark:bg-slate-700 dark:border-slate-700 overflow-y-scroll bg-white dark:bg-slate-800 w-10 sm:w-44 text-sm">
+              <td class="px-5 py-5 border-b border-gray-200 group/edit group-hover/item:dark:bg-slate-700 dark:border-slate-700 overflow-y-scroll bg-white dark:bg-slate-800 w-10 sm:w-52 text-sm">
                 <div class="flex">
                   <div class="flex-shrink-0 w-10 h-10 overflow-y-scroll">
                     <img
