@@ -18,7 +18,7 @@ function Feed({search}) {
       <section className='flex-shrink col-span-1 sm:col-span-5 md:col-span-5 lg:col-span-5 bg-gray-100 dark:bg-slate-900 overflow-scroll'> 
       <PostHeader />
       
-      <div className='mt-12'>
+      <div className='mt-12 h-screen'>
       <Posts />
       </div>
       </section>

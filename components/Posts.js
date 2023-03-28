@@ -38,12 +38,12 @@ function Posts() {
                 <div className='absolute inset-y-0 pl-3 flex items-center pointer-events-none'>
                     <AdjustmentsHorizontalIcon className='h-5 w-5 text-gray-500'/>
                 </div>
-                <select className='bg-gray-50 dark:bg-slate-900 dark:text-gray-500 block w-full pl-10 sm:text-sm border-gray-300 dark:border-slate-700 rounded-md focus:ring-[rgb(72,69,210)] focus:border-[rgb(72,69,210)]'>
+                <select onChange={e => setSearch(e.target.value)} className='bg-gray-50 dark:bg-slate-900 dark:text-gray-500 block w-full pl-10 sm:text-sm border-gray-300 dark:border-slate-700 rounded-md focus:ring-[rgb(72,69,210)] focus:border-[rgb(72,69,210)]'>
                     <option className='text-gray-500'>All Bugs</option>
-                    <option className='text-gray-500'>Open Bugs</option>
-                    <option className='text-gray-500'>Closed Bugs</option>
+                    <option className='text-gray-500'>Open</option>
+                    <option className='text-gray-500'>Closed</option>
                     <option className='text-gray-500'>In Progress</option>
-                </select>
+                </select> 
             </div>
             </div>
         </div>
@@ -51,12 +51,8 @@ function Posts() {
     </div>
   </div>
     <div className='pt-16'>
-      
-      
-      
-        
         {posts.filter((post) => {
-          return search.toLowerCase() === '' ? post : post.data().username.toLowerCase().includes(search) || post.data().severity.toLowerCase().includes(search)
+          return search.toLowerCase() === '' ? post : post.data().username.toLowerCase().includes(search) || post.data().severity.toLowerCase().includes(search) || post.data().status.toLowerCase().includes(search)
         }).map((post) => (
             <Post
             key={post.id}
